@@ -1,0 +1,227 @@
+import "./Tile.css";
+
+interface Properties {
+  x_axis: Array<string>;
+  y_axis: Array<string>;
+  i: number;
+  j: number;
+  number: number;
+  coords: string;
+  flexEnd: string;
+  lastNumber: string;
+}
+
+export default function Tile({
+  x_axis,
+  y_axis,
+  i,
+  j,
+  number,
+  coords,
+  flexEnd,
+  lastNumber
+}: Properties) {
+  if (i === 0) {
+    coords = y_axis[j];
+  }
+
+  if (j === 0) {
+    coords = x_axis[i];
+
+    if (x_axis[i] === "a") {
+      lastNumber = "1";
+    }
+  }
+
+  if (number % 2 === 0) {
+    if (j === 0) {
+      flexEnd = "flex-end";
+    }
+    return (
+      <div
+        style={{
+          gridTemplateColumns: "7fr 5fr",
+          paddingRight: 5,
+          gridAutoRows: 1,
+          display: "flex",
+          gridGap: 1,
+          color: "#f0d9b5",
+          backgroundColor: "#b58863"
+        }}
+      >
+        {lastNumber}
+        <div
+          className="title black-tile"
+          style={{
+            display: "flex",
+            alignItems: flexEnd,
+            justifyContent: flexEnd,
+            width: 100,
+            height: 100,
+            color: "#f0d9b5"
+          }}
+        >
+          {coords}
+        </div>
+      </div>
+    );
+  } else {
+    if (j === 0) {
+      flexEnd = "flex-end";
+    }
+    return (
+      <div
+        style={{
+          gridTemplateColumns: "7fr 5fr",
+          paddingRight: 5,
+          gridAutoRows: 1,
+          display: "flex",
+          gridGap: 1,
+          color: "#f0d9b5",
+          backgroundColor: "#f0d9b5"
+        }}
+      >
+        <div
+          className="title white-tile"
+          style={{
+            display: "flex",
+            alignItems: flexEnd,
+            justifyContent: flexEnd,
+            width: 100,
+            height: 100,
+            color: "#b58863"
+          }}
+        >
+          {coords}
+        </div>
+      </div>
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React from "react";
+import "./Chessboard.css";
+import Tile from "../Tile/Tile";
+
+const x_axis = ["a", "b", "c", "d", "e", "f", "g", "h"];
+const y_axis = ["1", "2", "3", "4", "5", "6", "7", "8"];
+
+export default function Chessboard() {
+  let board = [];
+
+  for (let j = y_axis.length - 1; j >= 0; j--) {
+    for (let i = 0; i < x_axis.length; i++) {
+      const number = i + j + 2;
+      let coords = "";
+      let flexEnd = "";
+      let lastNumber = "";
+      if (i === 0) {
+        coords = y_axis[j];
+      }
+
+      if (j === 0) {
+        coords = x_axis[i];
+        if (x_axis[i] === "a") {
+          lastNumber = "1";
+        }
+      }
+
+      if (number % 2 === 0) {
+        if (j === 0) {
+          flexEnd = "flex-end";
+        }
+        board.push(
+          // <Tile />
+          <div
+            style={{
+              gridTemplateColumns: "7fr 5fr",
+              paddingRight: 5,
+              gridAutoRows: 1,
+              display: "flex",
+              gridGap: 1,
+              color: "#f0d9b5",
+              backgroundColor: "#b58863"
+            }}
+          >
+            {lastNumber}
+            <div
+              className="title black-tile"
+              style={{
+                display: "flex",
+                alignItems: flexEnd,
+                justifyContent: flexEnd,
+                width: 100,
+                height: 100,
+                color: "#f0d9b5"
+              }}
+            >
+              {coords}
+            </div>
+          </div>
+        );
+      } else {
+        if (j === 0) {
+          flexEnd = "flex-end";
+        }
+        board.push(
+          <div
+            style={{
+              gridTemplateColumns: "7fr 5fr",
+              paddingRight: 5,
+              gridAutoRows: 1,
+              display: "flex",
+              gridGap: 1,
+              color: "#f0d9b5",
+              backgroundColor: "#f0d9b5"
+            }}
+          >
+            <div
+              className="title white-tile"
+              style={{
+                display: "flex",
+                alignItems: flexEnd,
+                justifyContent: flexEnd,
+                width: 100,
+                height: 100,
+                color: "#b58863"
+              }}
+            >
+              {coords}
+            </div>
+          </div>
+        );
+      }
+    }
+  }
+  for (var i = 0; i < x_axis.length; i++) {
+    board.push(<div style={{ backgroundColor: "#161512" }}></div>);
+  }
+  return <div id="chessboard">{board}</div>;
+}

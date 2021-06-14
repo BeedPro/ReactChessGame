@@ -1,0 +1,85 @@
+.tile {
+  width: 100px;
+  height: 100px;
+  display: grid;
+  place-content: center;
+  /*position: relative;*/
+}
+.coords-black-tile-x {
+  user-select: none;
+  position: absolute;
+  margin-left: 90px;
+  margin-top: 80px;
+  z-index: 1;
+  color: #f0d9b5;
+}
+
+.coords-white-tile-x {
+  user-select: none;
+  position: absolute;
+  margin-left: 85px;
+  margin-top: 80px;
+  z-index: 1;
+  color: #b58863;
+  padding-left: 5px;
+}
+
+.coords-black-tile-y {
+  user-select: none;
+  z-index: 1;
+  position: absolute;
+  color: #f0d9b5;
+  padding-left: 5px;
+}
+
+.coords-white-tile-y {
+  user-select: none;
+  z-index: 1;
+  position: absolute;
+  color: #b58863;
+  padding-left: 5px;
+}
+
+.tile .chess-piece {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 90px;
+}
+
+.tile .chess-piece:hover {
+  cursor: grab;
+}
+
+.tile .chess-piece:active {
+  cursor: grabbing;
+}
+
+.tile img {
+  width: 90px;
+}
+
+.black-tile {
+  /*border: 2px solid black;*/
+  background-color: #b58863;
+}
+
+.white-tile {
+  /*border: 2px solid black;*/
+  background: #f0d9b5;
+}
+
+.wrapper {
+  grid-template-columns: 7fr 5fr;
+  grid-auto-rows: 50px;
+  display: grid;
+  grid-gap: 20px;
+}
+
+.form-col-1 {
+  border: 1px solid black;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
